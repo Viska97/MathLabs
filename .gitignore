@@ -1,0 +1,10 @@
+.gradle
+/local.properties
+.DS_Store
+/build
+libs/
+.idea
+*.iws
+*.iml
+*.ipr
+/out/
