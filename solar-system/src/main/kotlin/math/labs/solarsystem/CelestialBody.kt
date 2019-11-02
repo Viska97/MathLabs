@@ -17,7 +17,7 @@ class CelestialBody(val name: String,
                     var v: Vector3 = Vector3(0f, 0f, 0f),
                     var a: Vector3 = Vector3(0f, 0f, 0f)) {
 
-    var position : Vector3 = r
+    var r : Vector3 = r
         set(value) {
             field = value
             setPosition()
@@ -33,7 +33,7 @@ class CelestialBody(val name: String,
     }
 
     private fun setPosition() {
-        instance.transform.set(position, Quaternion(0f, 0f, 0f, 0f))
+        instance.transform.set(r, Quaternion(0f, 0f, 0f, 0f))
     }
 
     override fun equals(other: Any?): Boolean {

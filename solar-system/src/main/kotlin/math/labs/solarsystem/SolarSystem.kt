@@ -34,7 +34,7 @@ class SolarSystem {
             i.a = origin
             for (j in bodies) {
                 if (i.name != j.name) {
-                    i.a += (j.position - i.position) * (G * j.mass / (i.position - j.position).mod.pow(3))
+                    i.a += (j.r - i.r) * (G * j.mass / (i.r - j.r).mod.pow(3))
                 }
             }
         }
@@ -46,7 +46,7 @@ class SolarSystem {
 
     private fun computePositions(h: Float) {
         for (i in bodies) {
-            i.position += i.v + i.a * h
+            i.r += i.v + i.a * h
         }
     }
 
