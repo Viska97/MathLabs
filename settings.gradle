@@ -1,1 +1,1 @@
-include 'lotka-volterra-model', 'wave-equation'
+include 'lotka-volterra-model', 'wave-equation', 'solar-system'

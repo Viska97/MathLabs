@@ -1,0 +1,41 @@
+apply plugin: "kotlin"
+
+sourceSets.main.java.srcDirs = [ "src" ]
+sourceSets.main.resources.srcDirs = ["assets"]
+
+project.ext.mainClassName = "math.labs.solarsystem.SolarSystemLauncher"
+project.ext.assetsDir = new File("assets")
+
+dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.badlogicgames.gdx:gdx:$gdx_version"
+    implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdx_version"
+    implementation "com.badlogicgames.gdx:gdx-platform:$gdx_version:natives-desktop"
+}
+
+task run(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+}
+
+task debug(dependsOn: classes, type: JavaExec) {
+    main = project.mainClassName
+    classpath = sourceSets.main.runtimeClasspath
+    standardInput = System.in
+    workingDir = project.assetsDir
+    debug = true
+}
+
+task dist(type: Jar) {
+    manifest {
+        attributes 'Main-Class': project.mainClassName
+    }
+    from {
+        configurations.compileClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+    with jar
+}
+
+dist.dependsOn classes
